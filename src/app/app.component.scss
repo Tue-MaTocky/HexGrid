@@ -1,0 +1,18 @@
+.navigation {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    border-bottom: 2px solid;
+    padding: 10px;
+    
+    button {
+        flex: 0 1 auto;
+        padding: 5px 40px 5px 40px;
+    }
+}
+.page-content-wrap {
+    margin: 0px auto;
+    width: 1200px;
+    min-height: calc(100vh - 51px);
+    box-shadow: 0 10px 10px #888888;
+}

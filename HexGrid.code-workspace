@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "HexGrid-1",
+			"path": "../HexGrid-1"
+		}
+	],
+	"settings": {}
+}
