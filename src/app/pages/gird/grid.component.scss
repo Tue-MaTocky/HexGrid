@@ -1,5 +1,7 @@
 @use 'sass:math';
 
+$primary-button-color: #89CFF0;
+
 $cell-size: 72;
 $cell-sqr: math.div($cell-size, 16);
 $grid-num-cells-wide: 7;
@@ -13,11 +15,94 @@ $angle-depth-p1: #{math.div($grid-angle-depth + 1, 16)}rem;
 $angle-depth-n1: #{math.div($grid-angle-depth - 1, 16)}rem;
 $cell-height: #{math.div($cell-sqr, 2)}rem;
 
+.grid-options {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 0.625rem;
+    justify-content: flex-end;
+    padding: 0 0.625rem;
+    box-sizing: border-box;
+    span {
+        display: block;
+        background-color: $primary-button-color;
+        width: 1.5625rem;
+        height: 1.5625rem;
+        margin: 0.625rem 0 0;
+        cursor: pointer;
+    }
+}
+
+.grid-wrap {
+    display: grid;
+    grid-template-columns: 1fr 3.125rem;
+    grid-template-rows: 2.125rem 1fr;
+    width: 39.125rem;
+    margin: 0 auto;
+
+    &.hide-grid-lines {
+        .column-markers,
+        .row-markers,
+        .grid {
+            span {
+                display: none;
+            }
+        }
+    }
+
+    .column-markers {
+        width: #{$grid-width}rem;
+        padding: 0.25rem 0 0 $angle-depth;
+        grid-column: 1 / 1;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        span {
+            position: relative;
+            text-align: center;
+            &::after {
+                content: " ";
+                border-left: 1px dashed #cccccc;
+                position: absolute;
+                right: 0;
+                left: 50%;
+                top: 1.5625rem;
+                z-index: 3;
+                height: 45.3125rem;
+            }
+        }
+    }
+    .grid {
+        grid-column: 1 / 1;
+    }
+    .row-markers {
+        display: grid;
+        margin: 1.125rem 0;
+        grid-template-rows: repeat(19, 1fr);
+        span {
+            position: relative;
+            margin: auto 0;
+            padding-left: 0.625rem;
+            &::after {
+                content: " ";
+                border-top: 1px dashed #cccccc;
+                width: 33.5rem;
+                position: absolute;
+                display: block;
+                bottom: 0;
+                top: 50%;
+                right: 100%;
+                z-index: 3;
+            }
+        }
+    }
+}
+
 .grid {
     position: relative;
     width: #{$grid-width}rem;
     height: #{$grid-height}rem;
-    margin: 3.125rem auto 0;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: [c-3] 1fr [c-2] 1fr [c-1] 1fr [c0] 1fr [c1] 1fr [c2] 1fr [c3] 1fr;
     grid-template-rows: [r4_5] 1fr [r4] 1fr [r3_5] 1fr [r3] 1fr [r2_5] 1fr [r2] 1fr [r1_5] 1fr [r1] 1fr [r0_5] 1fr [r0] 1fr [r-0_5] 1fr [r-1] 1fr [r-1_5] 1fr [r-2] 1fr [r-2_5] 1fr [r-3] 1fr [r-3_5] 1fr [r-4] 1fr [r-4_5] 1fr [r-5] 1fr;
@@ -35,7 +120,7 @@ $cell-height: #{math.div($cell-sqr, 2)}rem;
             position: absolute;
             top: 1.5625rem;
             left: -1rem;
-            z-index: 3;
+            z-index: 4;
         }
 
         &::before,
